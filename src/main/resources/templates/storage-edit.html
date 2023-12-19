@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}">
+<head>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:text="${errors}" class="margin-bottom alert-danger"></div>
+    <form action="#" th:action="@{/storage/{id}(id=${id})}" th:object="${storageDto}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Всего мест</label>
+            <input type="text" class="form-control" id="name" th:field="${storageDto.numberOfPlaces}" required="true">
+        </div>
+        <div class="mb-3">
+            <label for="num_in_storage" class="form-label">Свободных мест</label>
+            <input type="text" class="form-control" id="num_in_storage" th:field="${storageDto.numberOfFreePlaces}" required="true">
+        </div>
+        <div class="mb-3">
+            <label for="cost" class="form-label">Адресс</label>
+            <input type="text" class="form-control" id="cost" th:field="${storageDto.storageAddress}" required="true">
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary button-fixed">
+                <span th:if="${id == null}">Добавить</span>
+                <span th:if="${id != null}">Обновить</span>
+            </button>
+            <a class="btn btn-secondary button-fixed" th:href="@{/storage}">
+                Назад
+            </a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
